@@ -111,6 +111,9 @@ use_nvram false
 #
 #banner_scale fillscreen
 
+# Offset menu
+#menu_offset_y 0
+
 # Icon sizes. All icons are square, so just one value is specified. The
 # big icons are used for OS selectors in the first row and the small
 # icons are used for tools on the second row. Drive-type badges are 1/4

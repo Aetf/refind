@@ -720,6 +720,12 @@ VOID ReadConfig(CHAR16 *FileName)
                 HaveResized = TRUE;
             }
 
+        } else if (MyStriCmp(TokenList[0], L"menu_offset_y") && (TokenCount == 2)) {
+           HandleInt(TokenList, TokenCount, &i);
+           if (i >= 0) {
+              GlobalConfig.MenuOffsetY = i;
+           }
+
         } else if (MyStriCmp(TokenList[0], L"mouse_size") && (TokenCount == 2)) {
             HandleInt(TokenList, TokenCount, &i);
             if (i >= DEFAULT_MOUSE_SIZE) {

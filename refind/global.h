@@ -152,6 +152,9 @@
 #define DEFAULT_BIG_ICON_SIZE   128
 #define DEFAULT_MOUSE_SIZE      16
 
+// Offsets of the menus
+#define DEFAULT_MENU_OFFSET_Y 0
+
 // Codes for types of icon sizes; used for indexing into GlobalConfig.IconSizes[]
 #define ICON_SIZE_BADGE 0
 #define ICON_SIZE_SMALL 1
@@ -361,6 +364,7 @@ typedef struct {
    UINTN            IconSizes[4];
    UINTN            BannerScale;
    UINTN            LogLevel;
+   UINTN            MenuOffsetY;
    REFIT_VOLUME     *DiscoveredRoot;
    EFI_DEVICE_PATH  *SelfDevicePath;
    CHAR16           *BannerFileName;

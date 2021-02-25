@@ -973,6 +973,7 @@ static VOID ComputeSubScreenWindowSize(REFIT_MENU_SCREEN *Screen, IN SCROLL_STAT
     *YPos = ((UGAHeight - *Height) / 2);
     if (*YPos < BannerBottomEdge)
         *YPos = BannerBottomEdge + FontCellHeight + (HintTop - BannerBottomEdge - *Height) / 2;
+    *YPos += GlobalConfig.MenuOffsetY;
 } // VOID ComputeSubScreenWindowSize()
 
 // Displays sub-menus
@@ -1174,7 +1175,11 @@ static EG_IMAGE * GetIcon(IN EG_EMBEDDED_IMAGE *BuiltInIcon, IN CHAR16 *External
 }
 
 UINTN ComputeRow0PosY(VOID) {
-    return ((UGAHeight / 2) - TileSizes[0] / 2);
+    UINTN posy = ((UGAHeight / 2) - TileSizes[0] / 2);
+    if (posy + GlobalConfig.MenuOffsetY <= UGAHeight) {
+        posy += GlobalConfig.MenuOffsetY;
+    }
+    return posy;
 } // UINTN ComputeRow0PosY()
 
 static VOID ClearWithBackground(UINTN PosX, UINTN PosY, UINTN Width, UINTN Height){
