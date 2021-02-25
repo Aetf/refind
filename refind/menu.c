@@ -969,6 +969,7 @@ static VOID ComputeSubScreenWindowSize(REFIT_MENU_SCREEN *Screen, IN SCROLL_STAT
     *YPos = ((UGAHeight - *Height) / 2);
     if (*YPos < BannerBottomEdge)
         *YPos = BannerBottomEdge + FontCellHeight + (HintTop - BannerBottomEdge - *Height) / 2;
+    *YPos += GlobalConfig.MenuOffsetY;
 } // VOID ComputeSubScreenWindowSize()
 
 // Displays sub-menus
@@ -1185,7 +1186,11 @@ static VOID PaintIcon(IN EG_EMBEDDED_IMAGE *BuiltInIcon,
 } // static VOID ()
 
 UINTN ComputeRow0PosY(VOID) {
-    return ((UGAHeight / 2) - TileSizes[0] / 2);
+    UINTN posy = ((UGAHeight / 2) - TileSizes[0] / 2);
+    if (posy + GlobalConfig.MenuOffsetY <= UGAHeight) {
+        posy += GlobalConfig.MenuOffsetY;
+    }
+    return posy;
 } // UINTN ComputeRow0PosY()
 
 // Display (or erase) the arrow icons to the left and right of an icon's row,
