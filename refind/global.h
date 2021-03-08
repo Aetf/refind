@@ -312,6 +312,7 @@ typedef struct {
    CHAR16           *LoaderPath;
    REFIT_VOLUME     *Volume;
    BOOLEAN          UseGraphicsMode;
+   BOOLEAN          KeepBanner;
    BOOLEAN          Enabled;
    CHAR16           *LoadOptions;
    CHAR16           *InitrdPath; // Linux stub loader only
@@ -335,6 +336,7 @@ typedef struct {
    BOOLEAN          DeepLegacyScan;
    BOOLEAN          EnableAndLockVMX;
    BOOLEAN          FoldLinuxKernels;
+   BOOLEAN          KeepBanner;
    BOOLEAN          EnableMouse;
    BOOLEAN          EnableTouch;
    BOOLEAN          HiddenTags;

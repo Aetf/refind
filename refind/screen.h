@@ -86,7 +86,7 @@ extern EG_PIXEL MenuBackgroundPixel;
 VOID InitScreen(VOID);
 VOID SetupScreen(VOID);
 VOID BeginTextScreen(IN CHAR16 *Title);
-VOID BeginExternalScreen(IN BOOLEAN UseGraphicsMode, IN CHAR16 *Title);
+VOID BeginExternalScreen(IN BOOLEAN UseGraphicsMode, IN BOOLEAN KeepBanner, IN CHAR16 *Title);
 VOID FinishExternalScreen(VOID);
 VOID TerminateScreen(VOID);
 VOID DrawScreenHeader(IN CHAR16 *Title);

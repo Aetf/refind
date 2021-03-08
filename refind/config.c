@@ -786,6 +786,9 @@ VOID ReadConfig(CHAR16 *FileName)
         } else if (MyStriCmp(TokenList[0], L"fold_linux_kernels")) {
             GlobalConfig.FoldLinuxKernels = HandleBoolean(TokenList, TokenCount);
 
+        } else if (MyStriCmp(TokenList[0], L"keep_banner")) {
+            GlobalConfig.KeepBanner = HandleBoolean(TokenList, TokenCount);
+
         } else if (MyStriCmp(TokenList[0], L"extra_kernel_version_strings")) {
             HandleStrings(TokenList, TokenCount, &(GlobalConfig.ExtraKernelVersionStrings));
 
@@ -894,6 +897,9 @@ static VOID AddSubmenu(LOADER_ENTRY *Entry, REFIT_FILE *File, REFIT_VOLUME *Volu
         } else if (MyStriCmp(TokenList[0], L"add_options") && (TokenCount > 1)) {
             MergeStrings(&SubEntry->LoadOptions, TokenList[1], L' ');
 
+        } else if (MyStriCmp(TokenList[0], L"keep_banner") && (TokenCount > 1)) {
+            SubEntry->KeepBanner = MyStriCmp(TokenList[1], L"on");
+
         } else if (MyStriCmp(TokenList[0], L"graphics") && (TokenCount > 1)) {
             SubEntry->UseGraphicsMode = MyStriCmp(TokenList[1], L"on");
 
@@ -986,6 +992,9 @@ static LOADER_ENTRY * AddStanzaEntries(REFIT_FILE *File, REFIT_VOLUME *Volume, C
             if (TokenCount > 1) {
                 Entry->OSType = TokenList[1][0];
             }
+
+        } else if (MyStriCmp(TokenList[0], L"keep_banner") && (TokenCount > 1)) {
+            Entry->KeepBanner = MyStriCmp(TokenList[1], L"on");
 
         } else if (MyStriCmp(TokenList[0], L"graphics") && (TokenCount > 1)) {
             Entry->UseGraphicsMode = MyStriCmp(TokenList[1], L"on");

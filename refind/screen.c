@@ -240,14 +240,14 @@ VOID BeginTextScreen(IN CHAR16 *Title)
     SwitchToText(FALSE);
 }
 
-VOID BeginExternalScreen(IN BOOLEAN UseGraphicsMode, IN CHAR16 *Title)
+VOID BeginExternalScreen(IN BOOLEAN UseGraphicsMode, IN BOOLEAN KeepBanner, IN CHAR16 *Title)
 {
     if (!AllowGraphicsMode)
         UseGraphicsMode = FALSE;
 
     if (UseGraphicsMode) {
         SwitchToGraphics();
-        BltClearScreen(FALSE);
+        BltClearScreen(KeepBanner);
     } else {
         egClearScreen(&DarkBackgroundPixel);
         DrawScreenHeader(Title);

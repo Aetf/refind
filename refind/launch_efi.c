@@ -416,7 +416,7 @@ VOID StartLoader(LOADER_ENTRY *Entry, CHAR16 *SelectionName) {
     }
 
     LoaderPath = Basename(Entry->LoaderPath);
-    BeginExternalScreen(Entry->UseGraphicsMode, L"Booting OS");
+    BeginExternalScreen(Entry->UseGraphicsMode, Entry->KeepBanner, L"Booting OS");
     StoreLoaderName(SelectionName);
     StartEFIImage(Entry->Volume, Entry->LoaderPath, Entry->LoadOptions,
                   LoaderPath, Entry->OSType, !Entry->UseGraphicsMode, FALSE);
@@ -428,7 +428,7 @@ VOID StartTool(IN LOADER_ENTRY *Entry) {
     CHAR16 *LoaderPath;
 
     LOG(1, LOG_LINE_SEPARATOR, L"Starting '%s'", Entry->me.Title);
-    BeginExternalScreen(Entry->UseGraphicsMode, Entry->me.Title + 6);  // assumes "Start <title>" as assigned below
+    BeginExternalScreen(Entry->UseGraphicsMode, Entry->KeepBanner, Entry->me.Title + 6);  // assumes "Start <title>" as assigned below
     StoreLoaderName(Entry->me.Title);
     LoaderPath = Basename(Entry->LoaderPath);
     StartEFIImage(Entry->Volume, Entry->LoaderPath, Entry->LoadOptions,
